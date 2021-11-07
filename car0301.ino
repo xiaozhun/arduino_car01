@@ -29,6 +29,8 @@ void setup()
 }
 void loop()
 {
+//  Serial.println(1111111);
+  Serial.println(turn);
   switch (turn) //通过这个循环，控制小车方向
   {
   case 0: //前进
@@ -43,15 +45,15 @@ void loop()
     _mSetSpeed(speedPinA, 255);
     _mSetSpeed(speedPinB, 255);
     break;
-  case 2: //左转
+  case 3: //左转
     _mleft(in1, in2, in3, in4);
     _mSetSpeed(speedPinA, 255);
-    _mSetSpeed(speedPinB, 255);
+    _mSetSpeed(speedPinB, 180);
     break;
-  case 3: //右转
+  case 2: //右转
     _mright(in1, in2, in3, in4);
     _mSetSpeed(speedPinA, 255);
-    _mSetSpeed(speedPinB, 255);
+    _mSetSpeed(speedPinB, 180);
     break;
   case 4: //停止
     _mStop(in1, in2, in3, in4);
@@ -62,19 +64,19 @@ void loop()
     Serial.println(results.value); //以16进制换行输出接收代码
     switch (results.value)         //通过这个循环，比对
     {
-    case 16736925: //前进
+    case 16733100: //前进
       turn = 0;
       break;
-    case 16754775: //后退
+    case 16731060: //后退
       turn = 1;
       break;
-    case 16720605: //向左
+    case 16750950: //向左
       turn = 2;
       break;
-    case 16761405: //向右
+    case 16745340: //向右
       turn = 3;
       break;
-    case 16712445: //后退
+    case 16741260: //停止
       turn = 4;
       break;
     };
